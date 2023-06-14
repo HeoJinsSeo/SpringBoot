@@ -10,35 +10,45 @@
 <title>Insert title here</title>
 <style>
 
-body{
+* {
+margin: auto;
+}
 
-text-align: center;
+h1, 
+.sub2, 
+#a1, 
+.sub1,
+.sub3 {
+ display: grid;
+ place-items: center;
+}
 
+.table2 {
+
+ 
 }
 
 table {
-
 border: none;
-display: flex;
-justify-content: center; 
-align-items: center;
-margin-left: 700px;
-margin-right: 0; 
-width: 280px;
+width: 450px;
 }
+
 td {
+text-align: center;
 border: 2px solid #03c75a;
 background-color: #03c75a;
 color: white;
 }
+
 a {
+
 color: white;
 text-decoration: none;
 }
 
 
 
-.sub1, .sub2, #a1 {
+.sub1, .sub2, #a1, .sub3 {
 width: 100px;
 height: 30px;
 color: #03c75a;
@@ -47,11 +57,12 @@ background-color: white;
 
 }
 
-.sub1:hover, .sub2:hover, #a1:hover {
+.sub1:hover, .sub2:hover, #a1:hover, .sub3:hover {
 cursor: pointer;
-background-color: #002C00;
+background-color: #008100;
 color: white;
 }
+
 .line {
   position: relative;
 }
@@ -75,8 +86,10 @@ color: white;
 </style>
 </head>
 <body>
-
+<div class="wrap">
+<br><br>
 <h1>To Do List</h1>
+<br>
 <form action="/login">
 	<input class="sub2" type="submit" value="로그아웃">
 </form>
@@ -115,6 +128,8 @@ color: white;
   </ul>
 </form> --%>
 <%-- </c:if>  --%>
+
+<div class="table2">
 <table border="1">
 	<tr>
 		<!-- <td></td> -->
@@ -140,8 +155,13 @@ color: white;
 	</tr>
 </c:forEach>	
 </table>
+</div>
 </form>
-
+<br><br>
+<form action="/userlist2?id=${dto2.userid }">
+	<input class="sub3" type="submit" value="회원정보">
+</form>
+</div>
 <script>
 function completeItem(event) {
   event.preventDefault(); // 링크 기본 동작 취소

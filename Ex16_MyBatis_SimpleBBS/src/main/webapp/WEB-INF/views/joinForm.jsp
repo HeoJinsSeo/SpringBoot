@@ -8,8 +8,8 @@
 </head>
 <body>
 		<form action="userlist">
-		id : <input type="text" name="id"><br>
-		pw : <input type="text" name="password"><br>
+		userid : <input type="text" name="userid"><br>
+		password : <input type="text" name="password"><br>
 		<input type="submit" value="저장하기">
 		</form>
 </body>

@@ -12,18 +12,18 @@ public interface UserDao {
 
 		public abstract List<UserDto> userlistDao();
 		
-		UserDto viewDao(String id);
+		UserDto userviewDao(String userid);
 		
 		// return값인 int는 실행 결과 영향을 받은 row 수
 //		int writeDao(String content);
-//		int deleteDao(String id);
+		int deleteDao(String userid);
 //		int updateDao(SimpleBbsDto dto);
 		
 //		List testIf(SimpleBbsDto dto);
 	//	
-		List testForeach(SimpleBbsDto dto);
+	//	List testForeach(SimpleBbsDto dto);
 
-		public abstract int userwriteDao(String id, String password);
+		public abstract int userwriteDao(String userid, String password);
 
 
 }

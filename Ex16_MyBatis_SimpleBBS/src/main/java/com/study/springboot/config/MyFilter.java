@@ -32,8 +32,9 @@ public class MyFilter implements Filter {
 		request.setCharacterEncoding("utf-8");
 		
 		// 파라미터
-		String title = request.getParameter("title");
-		System.out.println("title : "+title);
+//		String title = request.getParameter("title");
+		String userid = request.getParameter("userid");
+		System.out.println("userid : "+userid);
 		
 		// 세션 관리
 		HttpServletRequest httpReq = (HttpServletRequest) request;

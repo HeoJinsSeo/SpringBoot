@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,7 +30,7 @@ public class MyController {
 	   @Autowired
 	ISimpleBbsDao dao;
 	
-//	   @Autowired
+	   @Autowired
 	   UserDao dao2;
 	   
 	@RequestMapping("/writeForm")
@@ -103,7 +104,7 @@ public class MyController {
 	
 	@RequestMapping("/userlist")
 	public String userlist(
-			@ModelAttribute UserDto dto,
+			@ModelAttribute UserDto dto2,
 			Model model,
 			HttpServletRequest req
 	) {
@@ -111,23 +112,23 @@ public class MyController {
 		
 		// 요청한 내용을 받아서 
 //		String writer = dto.getWriter();
-		String id = dto.getId();
-		String password = dto.getPassword();
+		String userid = dto2.getUserid();
+		String password = dto2.getPassword();
 
 		// 세션 테스트
 		HttpSession session = req.getSession();
 		session.setAttribute("isLogon", true);
-		session.setAttribute("id", id);
+		session.setAttribute("id", userid);
 		session.setAttribute("password", password);
 		
 		// 콘솔에 출력
 //		System.out.println("writer : "+ writer);
-		System.out.println("id : "+ id);
+		System.out.println("id : "+ userid);
 		System.out.println("password : "+ password);
 		
 		// 요청한 내용을 받아서 DB에 저장
 //		int result = dao.writeDao(writer, title, content);
-		int result = dao2.userwriteDao(id, password);
+		int result = dao2.userwriteDao(userid, password);
 		System.out.println("userDao result : "+ result);
 		
 		
@@ -191,31 +192,81 @@ public class MyController {
 		return "view";
 	}
 	
+//	
+//	@RequestMapping("/userview2")
+//	public String view2(Model model,
+//			@RequestParam("id") String id
+//			) {
+//		
+////      - id값을 받아서 
+//		System.out.println("str_id : "+ id);
+//		
+//		// 문자를 숫자로 
+//		int n_id = -1;
+//		try {
+//			n_id = Integer.parseInt(id);
+//		} catch (Exception e) {
+//			n_id = -1;
+//		}
+//		
+////		- 조회한 내용을
+//		UserDto dto = dao2.viewDao(id);
+//		
+//		
+////		- jsp로 보냄
+//		model.addAttribute("dto",dto);
+//		return "userview2";
+//	}
+//	
 	
-	@RequestMapping("/userview2")
-	public String view2(Model model,
-			@RequestParam("id") String id
-			) {
-		
-//      - id값을 받아서 
-		System.out.println("str_id : "+ id);
-		
-		// 문자를 숫자로 
-		int n_id = -1;
-		try {
-			n_id = Integer.parseInt(id);
-		} catch (Exception e) {
-			n_id = -1;
-		}
-		
-//		- 조회한 내용을
-		UserDto dto = dao2.viewDao(id);
-		
-		
-//		- jsp로 보냄
-		model.addAttribute("dto",dto);
-		return "userview2";
+//	@RequestMapping("/userlist2")
+//	public String userlist2(
+//			/* @RequestParam("userid") String userid, */
+//			Model model,
+//			HttpServletRequest req) {
+//		Boolean isLogon = (Boolean) req.getSession().getAttribute("isLogon");
+//		if(isLogon == null || isLogon != true) {
+//			return "login";
+//		}
+//		/*
+//		 * if(userid == null || userid.isEmpty()) { return
+//		 * ResponseEntity.badRequest().body("error"); }
+//		 */
+//		List<UserDto> list = dao2.userlistDao();
+//		
+//		model.addAttribute("list", list);
+//		
+//		System.out.println("회원정보");
+//		return "userlist2";
+//	}
+//	
+	@RequestMapping("/userlist2")
+	public String userlist2( Model model,
+	    HttpServletRequest req) {
+	    Boolean isLogon = (Boolean) req.getSession().getAttribute("isLogon");
+	    if (isLogon == null || !isLogon) {
+	        return "login";
+	    }
+	    
+	    List<UserDto> list = dao2.userlistDao();
+
+	    model.addAttribute("list", list);
+
+	    System.out.println("회원정보");
+	    return "userlist2";
 	}
+	
+	
+	
+	
+	
+	
+//	@RequestMapping("/userlist2")
+//	public String view2() {
+//		System.out.println("회원정보");
+//		return "userlist2";
+//	}
+//	
 	
 	
 	
@@ -255,6 +306,21 @@ public class MyController {
 		
 		return "redirect:/list";
 	}
+	
+	@RequestMapping("/delete2")
+	public String delete2(
+			@RequestParam("userid") String userid,
+			Model model
+			) {
+		
+		int result = dao2.deleteDao(userid);
+		System.out.println("삭제 결과 : "+ result);
+		
+		return "redirect:/userlist2";
+	}
+	
+	
+	
 	
 	//주소창에 "...: 8080/testIf"
 //	@RequestMapping("/testIf")
