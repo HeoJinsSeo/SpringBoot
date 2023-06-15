@@ -27,7 +27,7 @@
 		<!-- where 
 		<![CDATA[ id < 3 ]]> -->
 		order by 
-			userid 
+			n 
 	</select>
 	
 	<select id="userviewDao" 

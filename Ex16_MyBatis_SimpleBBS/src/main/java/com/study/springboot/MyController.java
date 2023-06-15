@@ -51,11 +51,42 @@ public class MyController {
 	
 	
 	@RequestMapping("/loginCheck")
-	public String loginCheck(HttpServletRequest req) {
+	public String loginCheck(HttpServletRequest req,
+			@RequestParam("userid") String userid, 
+			@RequestParam("password") String password) {
 		//세션 테스트
 		HttpSession session = req.getSession();
-		session.setAttribute("isLogon", true);
-		return "redirect:/list";
+		//session.setAttribute("isLogon", true);
+		
+		
+//		//아이디와 비밀번호 확인
+//		User user = userService.findByUsername(username);
+//	    if (user != null && user.getPassword().equals(password)) {
+//	        // 로그인 성공 시 처리
+//	        session.setAttribute("loggedInUser", user);
+//	        return "redirect:/list";
+//	    } else {
+//	        // 로그인 실패 시 처리
+//	        session.removeAttribute("loggedInUser");
+//	        return "redirect:/login?error=1";
+//	    }
+		
+		UserDto dto2 = dao2.userviewDao(userid);
+		
+		if (userid != null && dto2.getUserid().equals(userid)
+				&& dto2.getPassword().equals(password)) {
+			session.setAttribute("isLogon", true);
+			System.out.println("userid : "+ userid);
+			
+			return "redirect:/list";				
+		
+		} else {
+			
+			System.out.println("아이디 또는 비밀번호가 일치하지 않습니다");
+		
+			return "login";
+			
+		}
 	}
 	
 	
@@ -116,10 +147,10 @@ public class MyController {
 		String password = dto2.getPassword();
 
 		// 세션 테스트
-		HttpSession session = req.getSession();
-		session.setAttribute("isLogon", true);
-		session.setAttribute("id", userid);
-		session.setAttribute("password", password);
+//		HttpSession session = req.getSession();
+//		session.setAttribute("isLogon", true);
+//		session.setAttribute("id", userid);
+//		session.setAttribute("password", password);
 		
 		// 콘솔에 출력
 //		System.out.println("writer : "+ writer);

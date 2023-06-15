@@ -52,7 +52,9 @@ public class MyFilter implements Filter {
 			  System.out.println("isLogon : "+ isLogon);
 		  
 			  if( url.indexOf("/login") != -1
-					  || url.indexOf("/logout") != -1) {
+					  || url.indexOf("/logout") != -1
+					  || url.indexOf("/joinForm") != -1
+					  || url.indexOf("/userlist") != -1 ) {
 			  // 세션없이 통과	  
 				  chain.doFilter(request, response); 
 			  } else {

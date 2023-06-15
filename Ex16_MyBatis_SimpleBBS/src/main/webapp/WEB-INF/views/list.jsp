@@ -90,7 +90,7 @@ color: white;
 <br><br>
 <h1>To Do List</h1>
 <br>
-<form action="/login">
+<form action="/logout">
 	<input class="sub2" type="submit" value="로그아웃">
 </form>
 <br><br>	
