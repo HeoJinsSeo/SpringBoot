@@ -12,10 +12,8 @@
 <form action="/login" method="post">
 	id: <input type="text" name="id"><br>
 	pw: <input type="password" name="pw"><br>
-	
 	<span style="color:red;">${message}</span><br>
-	
-	<input type="submit" value="로그인">
+	<input type="submit" value="로그인"><br>
 </form>
 </body>
 </html>

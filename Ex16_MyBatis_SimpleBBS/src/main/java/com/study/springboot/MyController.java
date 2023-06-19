@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.study.springboot.dao.ISimpleBbsDao;
@@ -28,15 +29,18 @@ public class MyController {
 	   private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	   @Autowired
-	ISimpleBbsDao dao;
+	   ISimpleBbsDao dao;
 	
 	   @Autowired
 	   UserDao dao2;
+	   
+	  
 	   
 	@RequestMapping("/writeForm")
 	public String writeForm() {
 		return "writeForm";
 	}
+	
 	
 	@RequestMapping("/joinForm")
 	public String joinForm() {
@@ -53,7 +57,9 @@ public class MyController {
 	@RequestMapping("/loginCheck")
 	public String loginCheck(HttpServletRequest req,
 			@RequestParam("userid") String userid, 
-			@RequestParam("password") String password) {
+			@RequestParam("password") String password,
+			Model model
+			) {
 		//세션 테스트
 		HttpSession session = req.getSession();
 		//session.setAttribute("isLogon", true);
@@ -81,6 +87,7 @@ public class MyController {
 			return "redirect:/list";				
 		
 		} else {
+			model.addAttribute("message", "아이디 또는 비밀번호가 일치하지 않습니다.");
 			
 			System.out.println("아이디 또는 비밀번호가 일치하지 않습니다");
 		

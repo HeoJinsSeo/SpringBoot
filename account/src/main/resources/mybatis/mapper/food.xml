@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.springboot.dao.FoodDAO">
+
+<!-- CRUD만들기 -->
+<insert id="insertFood" parameterType="string">
+	
+	insert into food_exp (
+			food_id.nextval,
+			exp_date ,
+            title ,
+            exp_exp ,
+            exp_sum ,
+            exp_total )
+		values (
+			food_id.nextval,
+			sysdate ,
+			#{param1},
+			null,
+			null,
+			null
+		)	
+	
+</insert>
+
+<select id="selectFood" resultType="FoodDTO">
+	select 
+		food_id.nextval,
+		exp_date ,
+        title ,
+        exp_exp ,
+        exp_sum ,
+        exp_total
+	from
+		food_exp        
+        
+</select>
+
+<update id="updateFood" parameterType="string">
+	update 
+		food_exp
+	set 
+		title = #{param1}
+	where 
+		food_id = #{food_id}
+</update>
+
+<delete id="deleteFood" parameterType="FoodDTO">
+	delete 
+		food_exp
+	where
+		food_id = #{food_id}	
+
+</delete>
+
+
+</mapper>	
+
+
+
+
+

@@ -4,18 +4,17 @@ import java.sql.Date;
 
 public class UserDTO {
 /*
- * user_id	number(10)	NOT NULL,
-	id	varchar2(30)	NULL,
-	pw	varchar2(100)	NULL,
-	name	varchar2(12)	NULL,
-	join_date	date	default sysdate
+ * user_id	number(10)		NOT NULL,
+	id	varchar2(30)		NULL,
+	pw	varchar2(100)		NULL,
+	name	varchar2(100)		NULL,
+	join_date	date		default sysdate
  */
 	private int user_id;
 	private String id;
 	private String pw;
 	private String name;
 	private Date join_date;
-	
 	
 	public int getUser_id() {
 		return user_id;
@@ -47,8 +46,12 @@ public class UserDTO {
 	public void setJoin_date(Date join_date) {
 		this.join_date = join_date;
 	}
-
 	
+	@Override
+	public String toString() {
+		return "UserDTO [user_id=" + user_id + ", id=" + id + ", pw=" + pw + ", name=" + name + ", join_date="
+				+ join_date + "]";
+	}
 	
 	
 }

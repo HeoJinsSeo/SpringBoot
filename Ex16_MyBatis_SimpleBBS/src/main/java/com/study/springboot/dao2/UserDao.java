@@ -17,6 +17,7 @@ public interface UserDao {
 		// return값인 int는 실행 결과 영향을 받은 row 수
 //		int writeDao(String content);
 		int deleteDao(String userid);
+		
 //		int updateDao(SimpleBbsDto dto);
 		
 //		List testIf(SimpleBbsDto dto);
@@ -24,6 +25,6 @@ public interface UserDao {
 	//	List testForeach(SimpleBbsDto dto);
 
 		public abstract int userwriteDao(String userid, String password);
-
+	//	int loginCheck(UserDto userDTO);
 
 }

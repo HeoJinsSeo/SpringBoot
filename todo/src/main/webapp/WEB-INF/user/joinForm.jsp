@@ -8,14 +8,14 @@
 </head>
 <body>
 
-<h1>로그인</h1>
-<form action="/login" method="post">
+<h1>회원가입</h1>
+<form action="/join" method="post">
 	id: <input type="text" name="id"><br>
-	pw: <input type="password" name="pw"><br>
-	
 	<span style="color:red;">${message}</span><br>
-	
-	<input type="submit" value="로그인">
+	pw: <input type="password" name="pw"><br>
+	name: <input type="text" name="name"><br>
+	<input type="submit" value="회원가입">
 </form>
+
 </body>
 </html>
